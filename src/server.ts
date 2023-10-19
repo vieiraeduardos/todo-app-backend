@@ -1,6 +1,6 @@
 import "dotenv/config";
 
-import { randomUUID } from "node:crypto";
+import { randomUUID } from "crypto";
 
 import fastify from "fastify";
 import { ToDo, ToDoProps, ToDoUpdatedProps } from "./entities/ToDo";
