@@ -1,0 +1,29 @@
+{
+  "name": "todo-app-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx tsc && node dist/server.js",
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vieiraeduardos/todo-app-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/vieiraeduardos/todo-app-backend/issues"
+  },
+  "homepage": "https://github.com/vieiraeduardos/todo-app-backend#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.7",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "fastify": "^4.24.2"
+  }
+}
