@@ -8,12 +8,12 @@ class ToDoHandler {
         this.repository = new ToDoRepository();
     }
 
-    async create(payload: ToDoProps): Promise<ToDo> {
+    async create(payload: ToDoProps): Promise<boolean> {
         const todo = new ToDo(payload);
         
         this.repository.insert(todo);
         
-        return todo;
+        return true;
     }
 
     async find(): Promise<ToDo[]> {        

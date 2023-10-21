@@ -1,38 +1,33 @@
 import { ToDo, ToDoUpdatedProps } from "../entities/ToDo";
 
+import sql from "./db";
 export class ToDoRepository {
-    private db: Array<ToDo>;
+    private db: ToDo[] = [];
 
-    constructor() {
-        this.db = [];
-    }
-
-    insert(todo: ToDo): boolean {
-        this.db.push(todo);
-
-        return true;
-    }
-
-    findAll(): Array<ToDo> {
-        return this.db;
-    }
-
-    delete(code: string): boolean {
-        this.db = this.db.filter(todo => {
-            return todo.getCode() != code
-        });
+    async insert(todo: ToDo): Promise<boolean> {
+        await sql`insert into todos values (
+            ${todo.getCode()},
+            ${todo.getTitle()},
+            ${todo.getCreatedAt().toISOString()},
+            ${todo.getUpdatedAt().toISOString()},
+            ${todo.isCompleted()}
+        )`;
 
         return true;
     }
 
-    update(payload: ToDoUpdatedProps): boolean {
-        this.db.map(todo => {
-            if(todo.getCode() == payload.code) {
-                todo.setTitle(payload.title);
-                todo.setUpdatedAt(payload.updateAt);
-                todo.setIsCompleted(payload.isCompleted);
-            }
-        });
+    async findAll(): Promise<Array<any>> {
+        return await sql`select * from todos`;
+    }
+
+    async delete(code: string): Promise<boolean> {
+        await sql`delete from todos where code=${code}`;
+
+        return true;
+    }
+
+    async update(payload: ToDoUpdatedProps): Promise<boolean> {
+        await sql`update todos set title=${payload.title}, updated_at=${payload.updateAt}, is_completed=${payload.isCompleted} where code=${payload.code}`;
 
         return true;
     }

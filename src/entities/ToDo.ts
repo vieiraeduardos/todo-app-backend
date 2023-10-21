@@ -32,6 +32,10 @@ export class ToDo {
         return this.props.createdAt;
     }
 
+    getUpdatedAt() {
+        return this.props.updateAt;
+    }
+
     isCompleted() {
         return this.props.isCompleted;
     }

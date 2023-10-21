@@ -31,8 +31,8 @@ app.post("/todos", async (request, reply) => {
         isCompleted: false
     };
     
-    const todo = await ToDoHandler.create(payload);
-    return reply.code(200).send(todo);
+    await ToDoHandler.create(payload);
+    return reply.code(200).send({ "message": "Created successfully" });
 });
 
 interface IPutBody {
