@@ -3,9 +3,15 @@ import "dotenv/config";
 import { randomUUID } from "crypto";
 
 import fastify from "fastify";
+import cors from "@fastify/cors";
 import { ToDo, ToDoProps, ToDoUpdatedProps } from "./entities/ToDo";
 import ToDoHandler from "./handlers/ToDoHandler";
+
 const app = fastify();
+
+(async () => {
+    await app.register(cors);
+})();
 
 app.get("/", (request, reply) => {
     return reply.code(200).send({ "message": "Hello" })
